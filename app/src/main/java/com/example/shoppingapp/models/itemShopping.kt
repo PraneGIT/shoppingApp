@@ -5,6 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class itemShopping(
+    var _id: String,
     var title : String,
     var desc : String,
     var image : String,
@@ -13,6 +14,7 @@ data class itemShopping(
     var inCart:Boolean
 ):Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -28,6 +30,7 @@ data class itemShopping(
 
     @SuppressLint("NewApi")
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(_id)
         parcel.writeString(title)
         parcel.writeString(desc)
         parcel.writeString(image)
