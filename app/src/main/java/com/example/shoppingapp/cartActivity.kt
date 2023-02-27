@@ -33,8 +33,8 @@ class cartActivity : AppCompatActivity() {
 
     private fun setUpRV(){
         //random data
-        dataList.add(itemShopping("Title1","Desc1",R.drawable.random.toString(),69,true,false))
-        dataList.add(itemShopping("Title2","Desc2",R.drawable.random.toString(),69,true,false))
+        dataList.add(itemShopping("1","Title1","Desc1",R.drawable.random.toString(),69,true,false))
+        dataList.add(itemShopping("2","Title2","Desc2",R.drawable.random.toString(),69,true,false))
 
         findViewById<RecyclerView>(R.id.rv_cart).layoutManager=
             GridLayoutManager(applicationContext,2)
