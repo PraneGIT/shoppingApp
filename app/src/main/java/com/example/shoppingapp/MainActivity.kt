@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shoppingapp.Repository.RequestModel
 import com.example.shoppingapp.Repository.RetrofitInstance
 import com.example.shoppingapp.Repository.productRepository
 import com.example.shoppingapp.adapters.MainRVadapter
@@ -70,10 +71,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpRV(){
         //random data
-        dataList.add(itemShopping("1","Title1","Desc1",R.drawable.random.toString(),69,true,false))
-        dataList.add(itemShopping("2","Title2","Desc2",R.drawable.random.toString(),69,true,false))
-        dataList.add(itemShopping("3","Title3","Desc3",R.drawable.random.toString(),69,true,false))
-        dataList.add(itemShopping("4","Title3","Desc3",R.drawable.random.toString(),69,true,false))
+//        dataList.add(itemShopping("1","Title1","Desc1",R.drawable.random.toString(),69,true,false))
+//        dataList.add(itemShopping("2","Title2","Desc2",R.drawable.random.toString(),69,true,false))
+//        dataList.add(itemShopping("3","Title3","Desc3",R.drawable.random.toString(),69,true,false))
+//        dataList.add(itemShopping("4","Title3","Desc3",R.drawable.random.toString(),69,true,false))
 
         findViewById<RecyclerView>(R.id.rv_main).layoutManager=GridLayoutManager(applicationContext,2)
         var main_adapter=MainRVadapter(this, dataList)
@@ -99,8 +100,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getProducts()= GlobalScope.launch{
-        val response=RetrofitInstance.api.getAllProducts()
-        e("response",response.toString())
+        val response=RetrofitInstance.api.getAllProducts(RequestModel("products","test","Cluster0"))
+        e("response",response.body()?.documents.toString())
+
+        for( i in response.body()?.documents!!){
+            dataList.add(i)
+        }
+        runOnUiThread(Runnable {
+            setUpRV()
+        })
+
     }
 
 

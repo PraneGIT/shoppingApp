@@ -12,7 +12,7 @@ class Constants {
     companion object {
 
         const val API_KEY="oEXxBQqzLtldbzLstnMUpQ6QqoT3KWCcKtj8FDkPXMQmkmD7OICoZwg01uRjRPVT"
-        const val BASE_URL="https://ap-south-1.aws.data.mongodb-api.com/app/data-jyeae/endpoint/data/v1/action/findOne/"
+        const val BASE_URL="https://ap-south-1.aws.data.mongodb-api.com/app/data-jyeae/endpoint/data/v1/action/find"
 
 
         const val USERS:String="users"

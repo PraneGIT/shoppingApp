@@ -1,20 +1,20 @@
 package com.example.shoppingapp.Repository
 
 import com.example.shoppingapp.Constants
+import com.example.shoppingapp.hh
 import com.example.shoppingapp.models.itemShopping
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface productAPI {
-    @GET("/")
+    @Headers(
+        "Content-Type: application/json",
+        "Access-Control-Request-Headers: *",
+        "api-key: ${Constants.API_KEY}"
+    )
+    @POST(Constants.BASE_URL)
     suspend fun getAllProducts(
-        @Query("Content-Type")
-        type:String="application/json",
-        @Query("Access-Control-Request-Headers")
-        ans:String="*",
-        @Query("api-key")
-        apiKey:String=Constants.API_KEY
-    ):Response<itemShopping>
+        @Body requestModel: RequestModel
+    ):Response<hh>
 
 }
